@@ -1,0 +1,45 @@
+<div>
+    <h2>Enter Recipe</h2>
+<hr/><br>
+<form method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    <label>Recipe Name</label><br>
+    <input type="text" required name="recipe_name"><br><br>
+    <label>Recipe Description</label><br>
+    <textarea name = "recipe_description" rows="4" cols="50" required></textarea><br><br>
+    <label>Recipe Image</label><br>
+    <input type="file" name="recipe_image"><br><br>
+    <input type="submit" value="Add Recipe">
+</form>
+<br><br>
+<hr/>
+<h2>List of Recipes</h2>
+<form method="GET" action="{% url 'search_recipe' %}">
+    <input type = "text" name = "search" placeholder = "Search..">
+    <input type = "submit" value = "Search">
+</form>
+<table border = "1px" class="table">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Recipe Name</th>
+        <th scope="col">Recipe Description</th>
+        <th scope="col">Image</th>
+        <th scope="col">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for recipe in recipes %}
+      <tr>
+        <th width = "50px" scope="row">{{forloop.counter}}</th>
+        <td>{{recipe.recipe_name}}</td>
+        <td>{{recipe.recipe_description}}</td>
+        <td><img src="{{ recipe.recipe_image.url }}" height="100px" width="100px" alt="{{ recipe.recipe_name }}"></td>
+        <td><button><a href = "{% url 'delete_recipe' recipe.id %}">Delete</a></button>
+        <button><a href = "{% url 'edit_recipe' recipe.id %}">Edit</a></button></td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+</div>

@@ -1,0 +1,27 @@
+<div>
+    <h2>Update Recipe</h2>
+    <hr/><br>
+
+    <!-- Update form -->
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <label>Recipe Name</label><br>
+        <input type="text" name="recipe_name" value="{{ recipe.recipe_name }}" required><br><br>
+
+        <label>Recipe Description</label><br>
+        <textarea name="recipe_description" rows="4" columns="50">{{ recipe.recipe_description }}</textarea><br><br>
+
+        <label>Recipe Image</label><br>
+        <input type="file" name="recipe_image"><br><br>
+        {% if recipe.recipe_image %}
+            <p>Current Image:</p>
+            <img src="/media/{{ recipe.recipe_image }}" height="100px" width="100px" alt="{{ recipe.recipe_name }}"><br><br>
+        {% endif %}
+
+        <input type="submit" value="Update Recipe">
+    </form>
+
+    <!-- Back to list link -->
+    <br>
+    <a href="{% url 'recipe' %}">Back to Recipe List</a>
+</div>
