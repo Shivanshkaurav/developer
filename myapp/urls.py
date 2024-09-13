@@ -7,4 +7,8 @@ urlpatterns = [
     path('delete_recipe/<int:id>/', delete_recipe, name='delete_recipe'),
     path('search_recipe/', search_recipe, name='search_recipe'),
     path('edit_recipe/<int:id>/', update_recipe, name='edit_recipe')
-]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+]
+
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+    

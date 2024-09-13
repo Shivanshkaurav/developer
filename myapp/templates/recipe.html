@@ -1,3 +1,4 @@
+{% load static %}
 <div>
     <h2>Enter Recipe</h2>
 <hr/><br>
@@ -34,7 +35,7 @@
         <th width = "50px" scope="row">{{forloop.counter}}</th>
         <td>{{recipe.recipe_name}}</td>
         <td>{{recipe.recipe_description}}</td>
-        <td><img src="{{ recipe.recipe_image.url }}" height="100px" width="100px" alt="{{ recipe.recipe_name }}"></td>
+        <td><img src="{{ 'recipe.recipe_image.url' }}" height="100px" width="100px" alt="{{ recipe.recipe_name }}"></td>
         <td><button><a href = "{% url 'delete_recipe' recipe.id %}">Delete</a></button>
         <button><a href = "{% url 'edit_recipe' recipe.id %}">Edit</a></button></td>
       </tr>
